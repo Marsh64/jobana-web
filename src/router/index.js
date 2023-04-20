@@ -10,17 +10,14 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
 });
 
-const isAuthenticated = () => true;
+const isAuthorized = Object.prototype.hasOwnProperty.call(localStorage, 'token');
+    //localStorage.hasOwnProperty('token');//() => true;
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some((route) => route.meta?.requiresAuth)) {
-        if (isAuthenticated()) {
-            next();
-        } else {
-            next("/auth-required");
-        }
-    } else {
-        next();
+    if (to.meta.needAuth && !isAuthorized){
+        next({path: "/login"});
+    }else{
+        next()
     }
 });
 
