@@ -10,8 +10,8 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
 });
 
+//const isAuthorized = () => true;
 const isAuthorized = Object.prototype.hasOwnProperty.call(localStorage, 'token');
-    //localStorage.hasOwnProperty('token');//() => true;
 
 router.beforeEach((to, from, next) => {
     if (to.meta.needAuth && !isAuthorized){

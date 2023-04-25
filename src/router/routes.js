@@ -1,6 +1,7 @@
 const HelloWorld = () => import("@/components/HelloWorld.vue")
 const Board = () => import("@/components/Board.vue")
 const Login = () => import("@/components/Login.vue")
+const Registration = () => import("@/components/Registration.vue")
 
 const routes = [
     {
@@ -17,20 +18,25 @@ const routes = [
             {
                 path: '/board/:id',
                 component: Board,
-                meta: { needAuth: true}
+                meta: { needAuth: false}
             }
         ],
         meta: { needAuth: true}
     },
     {
-        path: "/page-not-found",
-        alias: '*',
-        component: { render: (h) => h("div", ["404! Page Not Found!"]) },
+        path: "/login",
+        component: Login,
         meta: { needAuth: false}
     },
     {
-        path: "/login",
-        component: Login,
+        path: "/registration",
+        component: Registration,
+        meta: { needAuth: false}
+    },
+    {
+        path: "/page-not-found",
+        alias: '*',
+        component: { render: (h) => h("div", ["404! Page Not Found!"]) },
         meta: { needAuth: false}
     }
 ]
