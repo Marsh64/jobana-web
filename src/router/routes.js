@@ -1,9 +1,15 @@
 const HelloWorld = () => import("@/components/HelloWorld.vue")
 const Board = () => import("@/components/Board.vue")
-const Login = () => import("@/components/Login.vue")
-const Registration = () => import("@/components/Registration.vue")
+const Login = () => import("@/components/auth/Login.vue")
+const Registration = () => import("@/components/auth/Registration.vue")
+const MyGreeting = () => import("@/components/greet/MyGreeting.vue")
 
 const routes = [
+    {
+        path: "/",
+        component: MyGreeting,
+        meta: { needAuth: false}
+    },
     {
         path: "/a",
         component: HelloWorld,
@@ -24,7 +30,7 @@ const routes = [
         meta: { needAuth: true}
     },
     {
-        path: "/login",
+        path: "/auth",
         component: Login,
         meta: { needAuth: false}
     },

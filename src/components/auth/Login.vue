@@ -3,7 +3,7 @@
     <div class="login-frame">
       <div class="logo">
         <img
-            src="assets/login/logo.svg"
+            src="assets/auth/logo.svg"
             height="41px"
             width="41px"
         >
@@ -12,8 +12,8 @@
         ВХОД
       </div>
       <div>
-        <b-form-input placeholder="Введите email" class="my-input"></b-form-input>
-        <b-form-input placeholder="Введите пароль" class="my-input"></b-form-input>
+        <b-form-input placeholder="Введите email" class="reg-in1"></b-form-input>
+        <b-form-input placeholder="Введите пароль" class="reg-in1"></b-form-input>
       </div>
       <div>
         <b-button class="my-enter-button">Войти</b-button>
@@ -61,8 +61,8 @@ html, body {
 }
 
 .login {
-  font-family: 'Ubuntu', sans-serif;
-  background-image: url("/public/assets/login/background_login.svg");
+  /*font-family: 'Ubuntu', sans-serif;*/
+  background-image: url("/public/assets/auth/background_auth.svg");
   background-size: cover;
   height: 100vh;
   width: 100%;
@@ -100,7 +100,7 @@ html, body {
   background-color: #ffffff;
 }
 
-.my-input {
+.reg-in1 {
   margin-top: 15px;
   width: 410px;
   height: 50px;

@@ -9,7 +9,7 @@ export const AuthApi = {
      * @returns {Promise<AxiosResponse<any>>}
      */
     login(login, password){
-        const url = '/login';
+        const url = '/auth';
         const data = { login, password };
         return LoginApiInstance.post(url, data);
     },

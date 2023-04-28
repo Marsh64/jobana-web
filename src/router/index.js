@@ -15,7 +15,7 @@ const isAuthorized = Object.prototype.hasOwnProperty.call(localStorage, 'token')
 
 router.beforeEach((to, from, next) => {
     if (to.meta.needAuth && !isAuthorized){
-        next({path: "/login"});
+        next({path: "/auth"});
     }else{
         next()
     }
