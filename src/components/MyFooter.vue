@@ -1,31 +1,41 @@
 <template>
   <div class="my-footer">
-    <ul>
+    <ul class="my-info">
       <li>
-        <div>Jobana</div>
+        <div class="mini-title">Jobana</div>
         <ul>
-          <li>Мобильная версия</li>
-          <li>Обновления</li>
-          <li>Версии</li>
+          <li><a href="#">Мобильная версия</a></li>
+          <li><a href="#">Обновления</a></li>
+          <li><a href="#">Версии</a></li>
         </ul>
       </li>
       <li>
-        <div>О компании</div>
+        <div class="mini-title">О компании</div>
         <ul>
-          <li>Блог</li>
-          <li>Вакансии</li>
+          <li><a href="#">Блог</a></li>
+          <li><a href="#">Вакансии</a></li>
         </ul>
       </li>
       <li>
-        <div>Поддержка</div>
+        <div class="mini-title">Поддержка</div>
         <ul>
-          <li>Сообщить об ошибке</li>
-          <li>Контактный центр</li>
+          <li><a href="#">Сообщить об ошибке</a></li>
+          <li><a href="#">Контактный центр</a></li>
         </ul>
       </li>
     </ul>
-    <div>
-      +7 999 999 99 99 copyright@2023 Jobana
+    <div class="my-bottom">
+      <div>
+        <img
+            src="assets/greet/gp_image.svg"
+            height="68px"
+            width="175px"
+        >
+      </div>
+      <div class="my-contact">
+        <span class="contact-info">copyright@2023Jobana</span>
+        <span class="contact-info">+7 999 999 99 99</span>
+      </div>
     </div>
   </div>
 </template>
@@ -38,10 +48,59 @@ export default {
 
 <style scoped>
 
+li {
+  list-style-type: none;
+  margin: 5px;
+}
+
+ul {
+  margin-left: 0;
+  padding-left: 0;
+  font-size: 18px;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.my-footer {
+  background: black;
+  padding: 40px 40px;
+}
+
+.mini-title {
+  color:white;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .my-footer {
   min-height: 305px;
   width: 100%;
 
 }
 
+.my-bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.my-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.contact-info {
+  margin: 10px
+}
+
+.my-contact {
+  color: white;
+  font-size: 18px;
+}
 </style>

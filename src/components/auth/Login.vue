@@ -2,21 +2,23 @@
   <div class="login">
     <div class="login-frame">
       <div class="logo">
-        <img
-            src="assets/auth/logo.svg"
-            height="41px"
-            width="41px"
-        >
+        <a href="/">
+          <img
+              src="assets/auth/logo.svg"
+              height="41px"
+              width="41px"
+          >
+        </a>
       </div>
       <div class="enter-title">
         ВХОД
       </div>
       <div>
-        <b-form-input placeholder="Введите email" class="reg-in1"></b-form-input>
-        <b-form-input placeholder="Введите пароль" class="reg-in1"></b-form-input>
+        <b-form-input placeholder="Введите email" v-model="email" class="reg-in1"></b-form-input>
+        <b-form-input placeholder="Введите пароль" v-model="password" class="reg-in1"></b-form-input>
       </div>
       <div>
-        <b-button class="my-enter-button">Войти</b-button>
+        <b-button class="my-enter-button" v-on:click="onSubmit" >Войти</b-button>
       </div>
       <div class="my-forgot">
         Забыли пароль?
@@ -25,7 +27,7 @@
         или
       </div>
       <div>
-        <b-button class="my-reg-button">Зарегистрировать новый аккаунт</b-button>
+        <b-button class="my-reg-button" href="/registration">Зарегистрировать новый аккаунт</b-button>
       </div>
     </div>
   </div>
@@ -42,11 +44,16 @@ export default {
   },
   methods: {
     onSubmit() {
+      console.log(this.email)
+      console.log(this.password)
       this.$store.dispatch(
           'onLogin',
-          {params: {token: this.email, password: this.password}}
+          {params: {email: this.email, password: this.password}}
       ).then(() => {
-        this.$router.push({name: 'Home'})
+        this.$router.push({path: "/"})
+      }).catch((err) => {
+        console.log(err)
+        //this.$router.push({path: "/registration"})
       })
     }
   }
@@ -61,7 +68,7 @@ html, body {
 }
 
 .login {
-  /*font-family: 'Ubuntu', sans-serif;*/
+  font-family: 'Ubuntu', sans-serif;
   background-image: url("/public/assets/auth/background_auth.svg");
   background-size: cover;
   height: 100vh;

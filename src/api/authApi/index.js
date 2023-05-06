@@ -1,4 +1,4 @@
-import { LoginApiInstance, DefaultApiInstance} from "@/api/authApi/config";
+import {LoginApiInstance, DefaultApiInstance} from "@/api/authApi/config";
 import {UserRole} from "@/utils/UserRoles";
 
 export const AuthApi = {
@@ -9,8 +9,12 @@ export const AuthApi = {
      * @returns {Promise<AxiosResponse<any>>}
      */
     login(login, password){
-        const url = '/auth';
-        const data = { login, password };
+        const url = '/auth/login';
+        const data = {};
+        data['email'] = login;
+        data['password'] = password;
+        console.log(data)
+        //const data = { login, password };
         return LoginApiInstance.post(url, data);
     },
 
