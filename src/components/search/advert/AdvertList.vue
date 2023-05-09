@@ -2,6 +2,9 @@
   <div>
     <MyHeader></MyHeader>
     <div class="my-data">
+      <div class="city-search-position">
+        <CitySearch></CitySearch>
+      </div>
       <div class="category-search-position">
         <CategorySearch></CategorySearch>
       </div>
@@ -21,12 +24,13 @@
 import MyHeader from "@/components/MyHeader.vue";
 import CategorySearch from "@/components/search/CategorySearch.vue";
 import JobSearch from "@/components/search/advert/JobSearch.vue";
+import CitySearch from "@/components/search/CitySearch.vue";
 // import JobAdvertItem from "@/components/search/advert/JobAdvertItem.vue";
 // import MyFooter from "@/components/MyFooter.vue";
 
 export default {
   name: "AdvertList",
-  components: { JobSearch, CategorySearch, MyHeader}, // JobAdvertItem,MyFooter,
+  components: { JobSearch, CategorySearch, MyHeader, CitySearch}, // JobAdvertItem,MyFooter,
   data() {
     return{
       job_adverts: [
@@ -106,10 +110,16 @@ export default {
   border: solid #666A6D 2px;
 }
 
-.category-search-position {
+.city-search-position {
   position: absolute;
   left: 3%;
   top: 17%;
+}
+
+.category-search-position {
+  position: absolute;
+  left: 3%;
+  top: 40%;
 }
 
 </style>

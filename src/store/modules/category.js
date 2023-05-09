@@ -41,7 +41,7 @@ export const Category = {
             })
         },
         SET_SELECTED({commit}, selected) {
-            commit("UPDATE_SELECTED", selected);
+            return commit("UPDATE_SELECTED", selected);
         }
     }
 }

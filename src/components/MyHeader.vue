@@ -1,6 +1,6 @@
 <template>
   <div class="greet-header" :class='{"additionaly": !isMain}'>
-    <div class="logo">
+    <div class="logo d-flex">
       <a href="/">
         Jobana
       </a>
@@ -73,7 +73,8 @@ export default {
   name: "MyHeader",
   data() {
     return {
-      showOptions: false
+      showOptions: false,
+      city: ""
     }
   },
   computed: {
@@ -259,6 +260,15 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.select-city {
+  font-size: 12px;
+  height: 20%;
+}
+
+.selector {
+  height: 50%
 }
 
 </style>

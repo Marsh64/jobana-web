@@ -91,7 +91,7 @@ export default {
               description: this.description, price: this.price, city: this.city, categories: this.selected}}
       ).then(() => {
         this.onSuccess();
-        this.$router.push({path: "/home/my-adverts"})
+        //this.$router.push({path: "/home/my-adverts"})
       }).catch((err) => {
         console.log(err)
         this.onError(err);

@@ -6,6 +6,7 @@
         :data="categories_tree"
         :options="{ checkbox: true }"
         v-model="selected_data"
+        class="font"
     ></tree>
   </b-container>
 </template>
@@ -64,13 +65,17 @@ html, body {
 .category-search {
   height: 100%;
   width: 270px;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 30px;
   box-shadow: 0 2px 5px #555353;
   margin: 0;
 }
 .title {
-  font-size: 20px;
+  font-size: 16px;
+}
+.font {
+  font-size: 14px;
+  color: black;
 }
 
 </style>

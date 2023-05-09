@@ -91,13 +91,12 @@ export default {
     onSubmit() {
       this.$store.dispatch(
           "EDITING_ADVERT",
-          {params: {title: this.title, shortDescription: this.shortDescription,
+          {params: {title: this.title, shortDescription: this.shortDescription, categories: this.selected,
               description: this.description, price: this.price, city: this.city, id: this.$route.params.id}}
       ).then(() => {
         this.onSuccess();
-        this.$router.push({path: "/home/my-adverts"})
+        //this.$router.push({path: "/home/my-adverts"})
       }).catch((err) => {
-        console.log(err)
         this.onError(err);
       })
     },
@@ -140,6 +139,12 @@ export default {
     },
     oldCity() {
       return this.$store.getters.ONE_ADVERT.city;
+    },
+    availableOptions() {
+      return this.categories.filter(opt => this.selected.indexOf(opt) === -1)
+    },
+    categories() {
+      return this.$store.getters.CATEGORIES_LIST;
     }
   }
 }

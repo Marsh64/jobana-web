@@ -56,6 +56,7 @@ export const PersonalAdvert = {
             data["description"] = params.description;
             data["price"] = params.price;
             data["city"] = params.city;
+            data["categories"] = params.categories;
             return DefaultApiInstance.put(`/adverts/${id}`, data).then ( res => {
                 return res;
             })
