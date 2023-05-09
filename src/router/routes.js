@@ -2,14 +2,15 @@ const Board = () => import("@/components/Board.vue")
 const Login = () => import("@/components/auth/Login.vue")
 const Registration = () => import("@/components/auth/Registration.vue")
 const MyGreeting = () => import("@/components/greet/MyGreeting.vue")
-const AdvertOfJob = () => import("@/components/advert/AdvertOfJob.vue")
-const JobAdvertInstance = () => import("@/components/advert/JobAdvertInstance.vue")
+const AdvertList = () => import("@/components/search/advert/AdvertList.vue")
+const JobAdvertInstance = () => import("@/components/search/advert/JobAdvertInstance.vue")
 const PersonalPage = () => import("@/components/home/PersonalPage.vue")
 const MyAdverts = () => import("@/components/home/advert/MyAdverts.vue")
 const CreateAdvert = () => import("@/components/home/advert/CreateAdvert.vue")
 const MyProfiles = () => import("@/components/home/expert/MyProfiles.vue")
 const CreateProfile = () => import("@/components/home/expert/CreateProfile.vue")
 const MyReplies = () => import("@/components/home/reply/MyReplies.vue")
+const EditingAdvert = () => import("@/components/home/advert/EditingAdvert.vue")
 
 const routes = [
     {
@@ -19,7 +20,7 @@ const routes = [
     },
     {
         path: "/adverts",
-        component: AdvertOfJob,
+        component: AdvertList,
         meta: { needAuth: false }
     },
     {
@@ -30,7 +31,6 @@ const routes = [
     {
         path: "/home",
         component: PersonalPage,
-        name: "Home",
         meta: { needAuth: true },
         children: [
             {
@@ -43,6 +43,10 @@ const routes = [
             {
                 path: "/home/create-advert",
                 component: CreateAdvert
+            },
+            {
+                path: `/home/edit-advert/:id`,
+                component: EditingAdvert
             },
             {
                 path: "/home/my-profiles",

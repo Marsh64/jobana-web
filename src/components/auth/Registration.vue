@@ -3,7 +3,7 @@
     <div class="registr-frame">
       <div class="logo">
         <img
-            src="assets/auth/logo.svg"
+            src="http://localhost:8080/assets/auth/logo.svg"
             height="41px"
             width="41px"
         >
@@ -12,29 +12,29 @@
         Регистрация
       </div>
       <div class="four-reg-button">
-        <b-form-input placeholder="Имя" class="reg-in in-size1"></b-form-input>
+        <b-form-input placeholder="Имя" class="reg-in in-size1" v-model="firstname"></b-form-input>
         <div class="reg-rat in-size2">
           <b-form-radio-group
-              v-model="selected"
+              v-model="sex"
               :options="options"
+              class="reg-rat-item"
               value-field="item"
               size="lg"
               plain
-              class="reg-rat-item"
           ></b-form-radio-group>
         </div>
-        <b-form-input placeholder="Фамилия" class="reg-in in-size1"></b-form-input>
-        <b-form-datepicker placeholder="Дата рождения"  :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }" class="reg-in in-size2"></b-form-datepicker>
+        <b-form-input placeholder="Фамилия" class="reg-in in-size1" v-model="lastname"></b-form-input>
+        <b-form-datepicker v-model="birthDate" placeholder="Дата рождения" :date-format-options="{ day: 'numeric', month: 'numeric', year: 'numeric'}" class="reg-in in-size2"></b-form-datepicker>
       </div>
       <div>
-        <b-form-input placeholder="Ваш email" class="reg-in in-size3"></b-form-input>
+        <b-form-input placeholder="Ваш email" class="reg-in in-size3" v-model="email"></b-form-input>
       </div>
       <div class="two-reg-button">
-        <b-form-input placeholder="Пароль" class="reg-in in-size4"></b-form-input>
-        <b-form-input placeholder="Повторите пароль" class="reg-in in-size4"></b-form-input>
+        <b-form-input placeholder="Пароль" class="reg-in in-size4" v-model="password1"></b-form-input>
+        <b-form-input placeholder="Повторите пароль" class="reg-in in-size4" v-model="password2"></b-form-input>
       </div>
       <div>
-        <b-button class="my-reg-button2">Зарегистрироваться</b-button>
+        <b-button class="my-reg-button2" v-on:click="onSubmit">Зарегистрироваться</b-button>
       </div>
     </div>
   </div>
@@ -43,13 +43,45 @@
 <script>
 export default {
   name: "MyRegistration",
-  data(){
+  data() {
     return {
-      selected: 'man',
+      firstname: '',
+      sex: 'M',
       options: [
-        { text: 'М', value: 'man' },
-        { text: 'Ж', value: 'woman' }
-      ]
+        { text: 'М', item: 'M' },
+        { text: 'Ж', item: 'F' }
+      ],
+      lastname: '',
+      birthDate: '',
+      email: '',
+      password1: '',
+      password2: ''
+    }
+  },
+  methods: {
+    onSubmit() {
+      if (this.password1 !== this.password2) {
+        this.onError("Пароли не совпадают");
+      } else {
+        const date = this.birthDate.slice(8) + '-' + this.birthDate.slice(5, 7) + '-' + this.birthDate.slice(0, 4)
+        this.$store.dispatch(
+            'onRegistration',
+            {params: {email: this.email, password: this.password1, firstname: this.firstname, lastname: this.lastname, birthDate: date, gender: this.sex}}
+        ).then(() => {
+          this.$router.push({path: "/"})
+        }).catch((err) => {
+          console.log(err)
+          this.onError(err);
+        })
+      }
+    },
+    onError(err) {
+      this.$bvToast.toast(`Ошибка: ${err}`, {
+        title: 'Login error',
+        autoHideDelay: 5000,
+        variant: 'danger',
+        noAutoHide: true
+      })
     }
   }
 }

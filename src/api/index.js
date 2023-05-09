@@ -1,20 +1,30 @@
-import {LoginApiInstance, DefaultApiInstance} from "@/api/authApi/config";
+import {LoginApiInstance, DefaultApiInstance} from "@/api/config";
 import {UserRole} from "@/utils/UserRoles";
 
 export const AuthApi = {
     /**
      *
-     * @param {string} login
+     * @param {string} email
      * @param {string} password
      * @returns {Promise<AxiosResponse<any>>}
      */
-    login(login, password){
+    login(email, password){
         const url = '/auth/login';
         const data = {};
-        data['email'] = login;
+        data['email'] = email;
         data['password'] = password;
-        console.log(data)
-        //const data = { login, password };
+        return LoginApiInstance.post(url, data);
+    },
+
+    registration(email, password, firstName, lastName, birthDate, gender){
+        const url = '/auth/signup'
+        const data = {};
+        data['email'] = email;
+        data['password'] = password;
+        data['firstName'] = firstName;
+        data['lastName'] = lastName;
+        data['birthDate'] = birthDate;
+        data['gender'] = gender;
         return LoginApiInstance.post(url, data);
     },
 
@@ -39,3 +49,5 @@ DefaultApiInstance.interceptors.response.use(
         return Promise.reject(error);
     }
 )
+
+export const host = "http://localhost:8080/"

@@ -1,10 +1,9 @@
-import {AuthApi} from "@/api/authApi";
+import {AuthApi} from "@/api";
 import {UserRole} from "@/utils/UserRoles"
-import {DefaultApiInstance} from "@/api/authApi/config";
+import {DefaultApiInstance} from "@/api/config";
 
-export const User = {
+export const Auth = {
     // namespaced: true,
-
     state: {
         credentials: {
             token: localStorage.getItem('token') || null,
@@ -15,10 +14,10 @@ export const User = {
 
     getters: {
         getUserRole(state) {
-            return state.credentials.userRole
+            return state.credentials.userRole;
         },
         getIsAuthorized(state) {
-            return state.isAuthorized
+            return state.isAuthorized;
         }
     },
 
@@ -46,9 +45,16 @@ export const User = {
     actions: {
         onLogin({commit}, {params}) {
             return AuthApi.login(params.email, params.password).then( res => {
-                console.log(res)
                 commit('setToken', res.data.token);
-                commit('setUserRole', res.data.userRole)
+                commit('setUserRole', res.data.userRole);
+                DefaultApiInstance.defaults.headers['Authorization'] = `Bearer ${res.data.token}`;
+            })
+        },
+        onRegistration({commit}, {params}) {
+            return AuthApi.registration(params.email, params.password, params.firstname,
+                params.lastname, params.birthDate, params.gender).then( res => {
+                commit('setToken', res.data.token);
+                commit('setUserRole', res.data.userRole);
                 DefaultApiInstance.defaults.headers['Authorization'] = `Bearer ${res.data.token}`;
             })
         },

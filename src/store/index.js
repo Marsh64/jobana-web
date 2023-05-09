@@ -1,12 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {User} from "@/store/modules/user";
+import {Auth} from "@/store/modules/auth";
+import {PersonalAdvert} from "@/store/modules/personalAdvert"
+import {Advert} from "@/store/modules/advert"
+import {Category} from "@/store/modules/category";
 
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     modules: {
-        User: User
+        auth: Auth,
+        personalAdvert: PersonalAdvert,
+        advert: Advert,
+        category: Category
     }
 })

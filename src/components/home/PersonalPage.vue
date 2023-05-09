@@ -7,8 +7,6 @@
     <div class="epi-box my-5 d-flex justify-content-center">
       <CreatePersonalInfo/>
     </div>
-
-
   </div>
 </template>
 

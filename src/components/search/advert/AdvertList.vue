@@ -7,25 +7,26 @@
       </div>
       <div class="category-list-search-items">
         <JobSearch></JobSearch>
-        <div v-for="advert in job_adverts" :key="advert.title">
-          <JobAdvertItem v-bind:advert="advert"></JobAdvertItem>
-        </div>
+<!--        <div v-for="advert in getAdverts" :key="advert.title">-->
+<!--          {{advert}}-->
+<!--          <JobAdvertItem v-bind:advert="advert"></JobAdvertItem>-->
+<!--        </div>-->
       </div>
     </div>
-    <MyFooter></MyFooter>
+<!--    <MyFooter></MyFooter>-->
   </div>
 </template>
 
 <script>
 import MyHeader from "@/components/MyHeader.vue";
-import CategorySearch from "@/components/advert/CategorySearch.vue";
-import JobSearch from "@/components/advert/JobSearch.vue";
-import JobAdvertItem from "@/components/advert/JobAdvertItem.vue";
-import MyFooter from "@/components/MyFooter.vue";
+import CategorySearch from "@/components/search/CategorySearch.vue";
+import JobSearch from "@/components/search/advert/JobSearch.vue";
+// import JobAdvertItem from "@/components/search/advert/JobAdvertItem.vue";
+// import MyFooter from "@/components/MyFooter.vue";
 
 export default {
-  name: "AdvertOfJob",
-  components: {MyFooter, JobAdvertItem, JobSearch, CategorySearch, MyHeader},
+  name: "AdvertList",
+  components: { JobSearch, CategorySearch, MyHeader}, // JobAdvertItem,MyFooter,
   data() {
     return{
       job_adverts: [
@@ -60,6 +61,25 @@ export default {
           photo: ["assets/photo/img1.png", "assets/photo/img2.png"]
         }
       ],
+    }
+  },
+  computed: {
+    getAdverts() {
+      return this.$store.getters.ALL_ADVERTS;
+    }
+  },
+  // mounted() {
+  //   this.$store.dispatch("GET_ALL_ADVERTS").catch( err => {
+  //     this.onError(err);
+  //   })
+  // },
+  methods: {
+    onError(err) {
+      this.$bvToast.toast(`Ошибка: ${err}`, {
+        title: "Login error",
+        autoHideDelay: 5000,
+        variant: "danger"
+      })
     }
   }
 }

@@ -4,7 +4,7 @@
       <div class="logo">
         <a href="/">
           <img
-              src="assets/auth/logo.svg"
+              src="http://localhost:8080/assets/auth/logo.svg"
               height="41px"
               width="41px"
           >
@@ -44,8 +44,6 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(this.email)
-      console.log(this.password)
       this.$store.dispatch(
           'onLogin',
           {params: {email: this.email, password: this.password}}
@@ -53,7 +51,15 @@ export default {
         this.$router.push({path: "/"})
       }).catch((err) => {
         console.log(err)
-        //this.$router.push({path: "/registration"})
+        this.onError(err);
+      })
+    },
+    onError(err) {
+      this.$bvToast.toast(`Ошибка: ${err}`, {
+        title: 'Login error',
+        autoHideDelay: 5000,
+        variant: 'danger',
+        noAutoHide: true
       })
     }
   }
@@ -65,6 +71,10 @@ export default {
 html, body {
   height: 100%;
   width: 100%;
+}
+
+.toast:not(.show) {
+  display: block;
 }
 
 .login {
