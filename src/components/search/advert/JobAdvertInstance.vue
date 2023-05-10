@@ -37,6 +37,9 @@
               <div class="grey mr-2">Создано:</div>
               <div>{{advert.createdAt}}</div>
             </div>
+            <div class="mt-4">
+              <b-button class="jai-button" v-on:click="onReply">Откликнуться</b-button>
+            </div>
           </b-col>
         </b-row>
       </b-container>
@@ -96,6 +99,12 @@ export default {
         autoHideDelay: 5000,
         variant: "danger"
       })
+    },
+    onReply() {
+      this.$store.dispatch("SEND_REPLY", this.$route.params.id).catch( err => {
+        this.onError(err);
+      })
+      console.log("все ок")
     }
   },
   computed: {

@@ -1,7 +1,7 @@
 <template>
   <div class="job-search-box">
     <div class="search">
-      <b-button class="search-img">
+      <b-button class="search-img" v-on:click="onSubmit">
         <img
             src="http://localhost:8080/assets/advert/search_icon.svg"
             height="26px"
@@ -25,6 +25,46 @@ export default {
   data() {
     return {
       search: ""
+    }
+  },
+  methods: {
+    onSubmit() {
+      console.log("opt_search")
+      const categories = this.get_categories;
+      const city = this.get_city;
+      const params = {
+        categories: null,
+        city: null,
+        size: null
+      }
+
+      if (categories.length !== 0) {
+        params["categories"] = categories.join();
+      }
+      if (city !== "" || null) {
+        params["city"] = city;
+      }
+
+      console.log(city)
+      this.$store.dispatch("GET_OPT_ADVERTS", params).catch( err => {
+        this.onError(err);
+      })
+    },
+    onError(err) {
+      this.$bvToast.toast(`Ошибка: ${err}`, {
+        title: 'Login error',
+        autoHideDelay: 5000,
+        variant: 'danger',
+        noAutoHide: true
+      })
+    }
+  },
+  computed: {
+    get_categories(){
+      return this.$store.getters.SELECTED;
+    },
+    get_city(){
+      return this.$store.getters.CITY
     }
   }
 }

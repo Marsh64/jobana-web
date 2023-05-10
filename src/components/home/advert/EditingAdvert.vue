@@ -21,7 +21,7 @@
           </div>
           <div class="mb-2">
             <div class="grey mr-2">Город:</div>
-            <b-form-input v-bind:placeholder="oldCity" class="w-auto back" v-model="city"></b-form-input>
+            <b-form-select v-model="city" :options="cities" class="w-25 back"></b-form-select>
           </div>
           <div class="mb-2">
             <b-form-group  class="grey" label="Категория:" label-for="tags-component-select">
@@ -120,6 +120,9 @@ export default {
     if (this.$store.getters.CATEGORIES_LIST.length === 0){
       this.$store.dispatch("GET_CATEGORIES");
     }
+    if (this.$store.getters.ALL_CITIES.length === 0){
+      this.$store.dispatch("GET_CITIES");
+    }
     this.$store.dispatch("GET_MY_ADVERT", this.$route.params.id).catch( err => {
       this.onError(err);
     })
@@ -145,6 +148,9 @@ export default {
     },
     categories() {
       return this.$store.getters.CATEGORIES_LIST;
+    },
+    cities() {
+      return this.$store.getters.ALL_CITIES;
     }
   }
 }
