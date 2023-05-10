@@ -180,6 +180,7 @@ a {
   position: sticky;
   top: 0;
   border-bottom: #DEDEDE 2px solid;
+  z-index: 1000;
 }
 
 .logo {

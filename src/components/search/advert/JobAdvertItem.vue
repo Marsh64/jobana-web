@@ -1,28 +1,42 @@
 <template>
-  <div class="jai-box">
-    <div class="jai-frame">
-      <div class="jai-data">
-        <div class="jai-data-info">
-          <div class="jai-data-info-title">
+  <div class="box-size">
+    <b-container class="jai-frame py-3">
+      <b-row class="mx-0">
+        <b-col cols="7">
+          <div class="title">
             {{advert.title}}
           </div>
-          <div class="jai-data-info-desc">
-            {{advert.short_description}}
+          <div class="d-flex">
+            <div class="grey mr-2">
+              Описание:
+            </div>
+            {{advert.shortDescription}}
           </div>
-          <div class="jai-data-info-prc">
-            Цена: {{advert.price}}
+          <div class="d-flex">
+            <div class="grey mr-2">
+              Город:
+            </div>
+            {{advert.city}}
           </div>
-          <b-button class="jai-data-button">Откликнуться</b-button>
-        </div>
-        <div class="jai-data-images">
-          <img
-              :src=advert.photo[1]
-              height="180px"
-              width="180px"
-          >
-        </div>
-      </div>
-    </div>
+          <div class="d-flex mr-2">
+            <div class="grey mr-2">
+              Категория:
+            </div>
+            {{advert.categories.join(", ")}}
+          </div>
+          <div class="d-flex">
+            <div class="grey mr-2">
+              Цена:
+            </div>
+            {{advert.price}}
+          </div>
+          <b-button class="jai-data-button" v-bind:href="'/adverts/' + advert.id">Подробнее</b-button>
+        </b-col>
+        <b-col cols="5">
+          Здесь картинка
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -32,31 +46,33 @@ export default {
   props: {
     advert: {
       type: Object,//можно заменить на класс - функцию обертку для класса
-      required: true,
-      default: function () {
-        return  {
-          title: "Дефолтное Объявление 00000",
-          short_description: "Краткое объяснение",
-          description: "Подробное объяснение",
-          created_at: "01.04.2000",
-          town: "Москва",
-          place: "г.Москва, ул.Пушкина, дом Кукушкина к228",
-          price: "5000 кредитов",
-          photo: ["assets/photo/img1.png", "assets/photo/img2.png"]
-        }
-      }
+      required: true
     }
   }
 }
 </script>
 
 <style scoped>
-
+.title {
+  font-size: 1.5rem;
+}
+.grey {
+  color: #666A6D;
+  font-size: 1rem;
+}
+.box-size {
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 .jai-box {
   margin: 0;
   padding: 10px 40px;
   width: 100%;
-  height: 250px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

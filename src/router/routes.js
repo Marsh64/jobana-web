@@ -1,4 +1,3 @@
-const Board = () => import("@/components/Board.vue")
 const Login = () => import("@/components/auth/Login.vue")
 const Registration = () => import("@/components/auth/Registration.vue")
 const MyGreeting = () => import("@/components/greet/MyGreeting.vue")
@@ -21,12 +20,12 @@ const routes = [
     {
         path: "/adverts",
         component: AdvertList,
-        meta: { needAuth: false }
+        meta: { needAuth: false },
     },
     {
-        path: "/advert/test",
+        path: "/adverts/:id",
         component: JobAdvertInstance,
-        meta: { needAuth: true }
+        meta: { needAuth: true },
     },
     {
         path: "/home",
@@ -61,20 +60,6 @@ const routes = [
                 component: MyReplies
             }
         ]
-    },
-    {
-        path: "/board",
-        component: {
-            render: (h) => h("div", ["Board Page", h("router-view")]),
-        },
-        children: [
-            {
-                path: '/board/:id',
-                component: Board,
-                meta: { needAuth: false }
-            }
-        ],
-        meta: { needAuth: true}
     },
     {
         path: "/login",

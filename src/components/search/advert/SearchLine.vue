@@ -3,7 +3,7 @@
     <div class="search">
       <b-button class="search-img">
         <img
-            src="assets/advert/search_icon.svg"
+            src="http://localhost:8080/assets/advert/search_icon.svg"
             height="26px"
             width="26px"
         >
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: "JobSearch",
+  name: "SearchLine",
   data() {
     return {
       search: ""

@@ -7,11 +7,11 @@ export const Advert = {
     },
 
     getters: {
-        ALL_ADVERTS(state) {
+        ADVERTS(state) {
             return state.adverts;
         },
         ADVERT(state) {
-            return state.oneAdvert;
+            return state.advert;
         }
     },
 
@@ -27,8 +27,15 @@ export const Advert = {
     actions: {
         GET_ALL_ADVERTS({commit}) {
             return DefaultApiInstance.get("/adverts").then( res => {
-                commit("UPDATE_ADVERTS", res.data);
+                commit("UPDATE_ADVERTS", res["data"]["content"]);
             })
-        }
+        },
+        GET_ADVERT({commit}, id) {
+            return DefaultApiInstance.get(`/adverts/${id}`).then( res => {
+                console.log(res)
+                console.log(res.data)
+                commit("UPDATE_ADVERT", res.data);
+            })
+        },
     }
 }

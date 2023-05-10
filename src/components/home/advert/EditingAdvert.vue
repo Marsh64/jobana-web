@@ -120,7 +120,7 @@ export default {
     if (this.$store.getters.CATEGORIES_LIST.length === 0){
       this.$store.dispatch("GET_CATEGORIES");
     }
-    this.$store.dispatch("GET_ONE_ADVERT", this.$route.params.id).catch( err => {
+    this.$store.dispatch("GET_MY_ADVERT", this.$route.params.id).catch( err => {
       this.onError(err);
     })
   },

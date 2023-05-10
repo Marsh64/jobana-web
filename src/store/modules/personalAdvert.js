@@ -30,7 +30,7 @@ export const PersonalAdvert = {
                 commit("UPDATE_MY_ADVERTS", res.data);
             })
         },
-        GET_ONE_ADVERT({commit}, id) {
+        GET_MY_ADVERT({commit}, id) {
             return DefaultApiInstance.get(`/adverts/${id}`).then( res => {
                 commit("UPDATE_ONE_ADVERT", res.data);
             })
