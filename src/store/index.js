@@ -6,6 +6,8 @@ import {Advert} from "@/store/modules/advert"
 import {Category} from "@/store/modules/category";
 import {City} from "@/store/modules/city";
 import {Reply} from "@/store/modules/reply";
+import {User} from "@/store/modules/user";
+import {Attachment} from "@/store/modules/attachment";
 
 
 Vue.use(Vuex)
@@ -17,6 +19,8 @@ export default new Vuex.Store({
         advert: Advert,
         category: Category,
         city: City,
-        reply: Reply
+        reply: Reply,
+        user: User,
+        attachment: Attachment
     }
 })

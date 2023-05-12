@@ -52,13 +52,23 @@
                       :options="availableOptions"
                   >
                     <template #first>
-                      <!-- This is required to prevent bugs with Safari -->
                       <option disabled value="" class="grey">Выберете категорию...</option>
                     </template>
                   </b-form-select>
                 </template>
               </b-form-tags>
             </b-form-group>
+          </div>
+          <div class="mb-2">
+            <div class="grey mr-2">Изображение:</div>
+            <b-form @submit.stop.prevent="onFile">
+              <div class="d-flex mb-3">
+                <b-form-file multiple v-model="image" placeholder="Выберите картинку..." class="w-auto flex-grow-1"></b-form-file>
+                <b-button v-if="hasImage" variant="danger" class="ml-3" @click="clearImage">Очистить выбор</b-button>
+              </div>
+              <b-img v-if="hasImage" :src="imageSrc" class="mb-3" fluid block rounded></b-img>
+            </b-form>
+<!--            <b-form-file v-model="file" class="mt-3" plain></b-form-file>-->
           </div>
         </b-col>
       </b-row>
@@ -72,6 +82,13 @@
 </template>
 
 <script>
+const base64Encode = data =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(data);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
 export default {
   name: "CreateAdvert",
   data() {
@@ -82,15 +99,25 @@ export default {
       price: 0,
       city: "",
       selected: [],
+      image: null,
+      imageSrc: null
     }
   },
   methods: {
     onSubmit() {
+
+      console.log(this.image)
+      console.log(typeof (this.image))
       this.$store.dispatch(
           'CREATE_ADVERT',
           {params: {title: this.title, shortDescription: this.shortDescription,
               description: this.description, price: this.price, city: this.city, categories: this.selected}}
-      ).then(() => {
+      ).then((res) => {
+        console.log("++++++++++++++++++")
+        console.log(this.image)
+        const formData = new FormData();
+        formData.append("files", this.image)
+        this.$store.dispatch("SEND_ATTACHMENT", res.data.id, formData)
         this.onSuccess();
         //this.$router.push({path: "/home/my-adverts"})
       }).catch((err) => {
@@ -112,7 +139,19 @@ export default {
         variant: 'success',
         toaster: "b-toaster-top-center"
       })
-    }
+    },
+    // onFile() {
+    //   if (!this.image) {
+    //     alert("Please select an image.");
+    //     return;
+    //   }
+    //
+    //   alert("Form submitted!");
+    //
+    // },
+    clearImage() {
+      this.image = null;
+    },
   },
   computed: {
     availableOptions() {
@@ -123,6 +162,9 @@ export default {
     },
     cities() {
       return this.$store.getters.ALL_CITIES;
+    },
+    hasImage() {
+      return !!this.image;
     }
   },
   mounted() {
@@ -132,7 +174,24 @@ export default {
     if (this.$store.getters.ALL_CITIES.length === 0){
       this.$store.dispatch("GET_CITIES");
     }
-  }
+  },
+  watch: {
+    image(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        if (newValue) {
+          base64Encode(newValue)
+              .then(value => {
+                this.imageSrc = value;
+              })
+              .catch(() => {
+                this.imageSrc = null;
+              });
+        } else {
+          this.imageSrc = null;
+        }
+      }
+    }
+  },
 }
 </script>
 

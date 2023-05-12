@@ -52,9 +52,10 @@ export const Advert = {
                 commit("UPDATE_LAST", res["data"]["last"]);
                 commit("UPDATE_LOADED", res["data"]["numberOfElements"]);
                 commit("UPDATE_TOTAL", res["data"]["totalElements"]);
-                console.log("last: " + res["data"]["last"])
-                console.log("number: " + res["data"]["numberOfElements"])
-                console.log("total: " + res["data"]["totalElements"])
+                // console.log("last: " + res["data"]["last"])
+                // console.log("number: " + res["data"]["numberOfElements"])
+                // console.log("total: " + res["data"]["totalElements"])
+                console.log(res["data"]["content"])
             })
         },
         GET_ADVERT({commit}, id) {

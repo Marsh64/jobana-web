@@ -37,6 +37,16 @@
               <div class="grey mr-2">Создано:</div>
               <div>{{advert.createdAt}}</div>
             </div>
+            <div class="d-flex flex-wrap">
+              <div v-for="attachment in advert.attachments" v-bind:key="attachment" class="m-3">
+                <b-img
+                    v-bind:src="image(attachment)"
+                    v-bind:alt="attachment"
+                    fluid
+                >
+                </b-img>
+              </div>
+            </div>
             <div class="mt-4">
               <b-button class="jai-button" v-on:click="onReply">Откликнуться</b-button>
             </div>
@@ -44,40 +54,6 @@
         </b-row>
       </b-container>
     </div>
-<!--    <div class="jai">-->
-<!--      <div class="jai-box">-->
-<!--        <div class="jai-header">-->
-<!--          <a class="jai-ref">-->
-<!--            <img-->
-<!--                src="http://localhost:8080/assets/advert/arrow.svg"-->
-<!--                height="20px"-->
-<!--                width="24px"-->
-<!--            >-->
-<!--          </a>-->
-<!--          <div class="jai-title">-->
-<!--            {{advert.title}}-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="jai-content">-->
-<!--          <div>-->
-<!--&lt;!&ndash;            <img&ndash;&gt;-->
-<!--&lt;!&ndash;                :src=advert.photo[0]&ndash;&gt;-->
-<!--&lt;!&ndash;                height="180px"&ndash;&gt;-->
-<!--&lt;!&ndash;                width="180px"&ndash;&gt;-->
-<!--&lt;!&ndash;            >&ndash;&gt;-->
-<!--          </div>-->
-<!--          <div class="jai-description">-->
-<!--            {{advert.description}}-->
-<!--          </div>-->
-<!--          <div class="jai-price">-->
-<!--            Цена: {{advert.price}}-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          <b-button class="jai-button">Откликнуться</b-button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
   </div>
 </template>
 
@@ -105,6 +81,9 @@ export default {
         this.onError(err);
       })
       console.log("все ок")
+    },
+    image(id) {
+      return `http://localhost:8000/api/files/${id}`;
     }
   },
   computed: {

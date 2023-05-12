@@ -33,7 +33,19 @@
           <b-button class="jai-data-button" v-bind:href="'/adverts/' + advert.id">Подробнее</b-button>
         </b-col>
         <b-col cols="5">
-          Здесь картинка
+<!--          <b-img-->
+<!--              v-if="advert.attachments.length !== 0"-->
+<!--              v-bind:src="attachments[advert.attachments[0]]"-->
+<!--              fluid-->
+<!--          >-->
+<!--          </b-img>-->
+          <b-img
+              v-if="advert.attachments.length !== 0"
+              v-bind:src="image(advert)"
+              v-bind:alt="alt(advert)"
+              fluid
+          >
+          </b-img>
         </b-col>
       </b-row>
     </b-container>
@@ -48,7 +60,36 @@ export default {
       type: Object,//можно заменить на класс - функцию обертку для класса
       required: true
     }
-  }
+  },
+  methods: {
+    // image(advert) {
+    //   console.log("--------------------")
+    //   console.log(this.$store.getters.ATTACHMENT[advert.id])
+    //   console.log("--------------------")
+    //   console.log(btoa(this.$store.getters.ATTACHMENT[advert.id]))
+    //   console.log("--------------------")
+    //   return this.attachments[advert.id];
+    // }
+    image(advert) {
+      return `http://localhost:8000/api/files/${advert.attachments[0]}`;
+    },
+    alt(advert) {
+      return advert.attachments[0];
+    }
+  },
+  // computed: {
+  //   attachments(){
+  //     console.log(this.$store.getters.ATTACHMENTS[this.advert.attachments[0]])
+  //     console.log("==============================")
+  //     console.log("data:image/jpeg;base64," + btoa(this.$store.getters.ATTACHMENTS[this.advert.attachments[0]]))
+  //     return this.$store.getters.ATTACHMENTS;
+  //   }
+  // },
+  // mounted() {
+  //   if (this.advert.attachments.length !== 0) {
+  //     this.$store.dispatch("GET_ATTACHMENT", this.advert.attachments[0]);
+  //   }
+  // }
 }
 </script>
 

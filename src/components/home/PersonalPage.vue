@@ -5,7 +5,7 @@
       <EditPersonalData/>
     </div>
     <div class="epi-box my-5 d-flex justify-content-center">
-      <CreatePersonalInfo/>
+      <PersonalRouting/>
     </div>
   </div>
 </template>
@@ -13,11 +13,11 @@
 <script>
 import MyHeader from "@/components/MyHeader.vue";
 import EditPersonalData from "@/components/home/EditPersonalData.vue";
-import CreatePersonalInfo from "@/components/home/CreatePersonalInfo.vue";
+import PersonalRouting from "@/components/home/PersonalRouting.vue";
 
 export default {
   name: "PersonalPage",
-  components: {EditPersonalData, CreatePersonalInfo, MyHeader}
+  components: {EditPersonalData, PersonalRouting, MyHeader}
 }
 </script>
 

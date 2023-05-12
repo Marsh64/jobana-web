@@ -1,4 +1,4 @@
-import {LoginApiInstance, DefaultApiInstance} from "@/api/config";
+import {LoginApiInstance, DefaultApiInstance, AttachmentApiInstance} from "@/api/config";
 import {UserRole} from "@/utils/UserRoles";
 
 export const AuthApi = {
@@ -50,4 +50,14 @@ DefaultApiInstance.interceptors.response.use(
     }
 )
 
-export const host = "http://localhost:8080/"
+AttachmentApiInstance.interceptors.response.use(
+    response => response,
+    error => {
+        if (error.code === 401) {
+            localStorage.removeItem('token');
+            localStorage.setItem('userRole', UserRole.Guest);
+            location.reload();
+        }
+        return Promise.reject(error);
+    }
+)

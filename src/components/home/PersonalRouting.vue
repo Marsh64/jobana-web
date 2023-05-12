@@ -64,7 +64,7 @@
 
 <script>
 export default {
-  name: "CreatePersonalInfo",
+  name: "PersonalRouting",
   data() {
     return {
       showAdvert: false,
