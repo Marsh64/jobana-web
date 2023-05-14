@@ -48,6 +48,7 @@ export default {
   padding: 30px;
   box-shadow: 0 2px 5px #555353;
   margin: 0;
+  background-color: white;
 }
 .title {
   font-size: 16px;

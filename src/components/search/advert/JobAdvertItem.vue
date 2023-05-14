@@ -108,6 +108,8 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
+  border-radius: 10px;
+
 }
 .jai-box {
   margin: 0;

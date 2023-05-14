@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="back">
     <MyHeader/>
     <div class="epi-box my-5 d-flex justify-content-center">
       <EditPersonalData/>
@@ -25,6 +25,10 @@ export default {
 .epi-box {
   width: 100%;
   height: 100%;
+}
+.back {
+  background-image: url("/public/assets/common/background.svg");
+  background-size: contain;
 }
 
 </style>

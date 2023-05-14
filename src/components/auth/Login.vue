@@ -69,6 +69,7 @@ export default {
 <style scoped>
 
 html, body {
+  /*font-family: 'Ubuntu', sans-serif;*/
   height: 100%;
   width: 100%;
 }

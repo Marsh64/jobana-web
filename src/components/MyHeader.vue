@@ -166,7 +166,7 @@ a {
 }
 
 .greet-header {
-  /*font-family: 'Ubuntu', sans-serif;*/
+  font-family: 'Ubuntu', sans-serif;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;

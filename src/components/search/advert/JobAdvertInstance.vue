@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="background">
     <MyHeader></MyHeader>
     <div>
       <b-container class="box">
@@ -95,7 +95,10 @@ export default {
 </script>
 
 <style scoped>
-
+.background {
+  background-image: url("/public/assets/common/background.svg");
+  background-size: contain;
+}
 .title {
   font-size: 2rem;
   font-weight: bold;
@@ -124,6 +127,7 @@ export default {
   border-radius: 10px;
   box-shadow: 0 2px 5px #555353;
   padding: 30px 40px;
+  background-color: white;
 }
 .jai-header{
   display: flex;

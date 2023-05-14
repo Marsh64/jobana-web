@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="my-font">
     <MyHeader/>
     <div class="city-search-position">
       <CitySearch/>
@@ -106,6 +106,12 @@ export default {
 </script>
 
 <style scoped>
+.my-font {
+  font-family: 'Ubuntu', sans-serif;
+  background-image: url("/public/assets/common/background.svg");
+  background-size: contain;
+
+}
 
 .category-list-search-items {
   width: 785px;

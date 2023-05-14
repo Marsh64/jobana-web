@@ -71,7 +71,7 @@ html, body {
 }
 
 .first-page {
-  /*font-family: 'Ubuntu', sans-serif;*/
+  font-family: 'Ubuntu', sans-serif;
   background-image: url("/public/assets/greet/background_first_page.svg");
   background-size: cover;
   height: 100vh;
